@@ -9,19 +9,18 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
   integrity="sha384-Zh+y1U8o6/7ni8Mp8szvUfZjGeKKS10CGH3IlD6L1X+XwzYgQ1llOjw/Wslc0cma"
   crossorigin="anonymous">
-  
-<link rel="stylesheet" href="https://unpkg.com/leaflet-toolbar@0.4.0-alpha.2/dist/leaflet.toolbar-src.css"/>
-  
-<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+ 
+  <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
   integrity="sha384-6rCYjRgWDEI2RlZxiVihj1WIZB/uvFiRCGpavTVgFrSPDL0Bk1AiqCW+mmv5h0LP"
   crossorigin="anonymous"></script>
   
-  <!-- Load Leaflet-toolbar: instructions at https://github.com/Leaflet/Leaflet.toolbar -->
+  <!-- Load EasyButton: instructions at https://github.com/Leaflet/Leaflet.toolbar -->
 
-	<script src="https://unpkg.com/leaflet-toolbar@0.4.0-alpha.2/dist/leaflet.toolbar-src.js"></script> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
   
   <!-- Load Omnivore plugin to convert CSV to GeoJSON format -->
-    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 
   
 
@@ -37,7 +36,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools II</div>
+  <div id="map-title">International Schools III</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -105,98 +104,11 @@
   
   
   
-    /* Set up toolbar */
-          var map = L.map('map').setView([41.7896, -87.5996], 15);
-        L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: '<a href="http://openstreetmap.org/copyright">OpenStreetMap Contributors</a>'
-        }).addTo(map);
-        /* A sub-action which completes as soon as it is activated.
-         * Sub-actions receive their parent action as an argument to
-         * their `initialize` function. We save a reference to this
-         * parent action so we can disable it as soon as the sub-action
-         * completes.
-         */
-	  		new L.DrawToolbar.Control({ 
-			position: 'topleft',
-			className: 'leaflet-draw-toolbar',
-		}).addTo(map);
-
-		map.on('draw:created', function(evt) {
-			var	type = evt.layerType,
-				layer = evt.layer;
-
-			drawnItems.addLayer(layer);
-
-			layer.on('click', function(event) {
-				new L.EditToolbar.Popup(event.latlng, {
-					className: 'leaflet-draw-toolbar',
-					actions: editActions
-				}).addTo(map, layer);
-			});
-		});
-        var ImmediateSubAction = L.Toolbar2.Action.extend({
-            initialize: function(map, myAction) {
-                this.map = map;
-                this.myAction = myAction;
-                L.Toolbar2.Action.prototype.initialize.call(this);                
-            },
-            addHooks: function() {
-                this.myAction.disable();
-            }
-        });
-        var World = ImmediateSubAction.extend({
-            options: {
-                toolbarIcon: {
-                    html: 'World',
-                    tooltip: 'See the whole world'
-                }
-            },
-            addHooks: function () {
-                this.map.setView([0, 0], 0);
-                ImmediateSubAction.prototype.addHooks.call(this);
-            }
-        });
-        var Eiffel = ImmediateSubAction.extend({
-            options: {
-                toolbarIcon: {
-                    html: 'Eiffel Tower',
-                    tooltip: 'Go to the Eiffel Tower'
-                }
-            },
-            addHooks: function () {
-                this.map.setView([48.85815, 2.29420], 19);
-                ImmediateSubAction.prototype.addHooks.call(this);
-            }
-        });
-        var Cancel = ImmediateSubAction.extend({
-            options: {
-                toolbarIcon: {
-                    html: '<i class="fa fa-times"></i>',
-                    tooltip: 'Cancel'
-                }   
-            }
-        });
-        var MyCustomAction = L.Toolbar2.Action.extend({
-            options: {
-                toolbarIcon: {
-                    className: 'fa fa-eye',
-                },
-                /* Use L.Toolbar2 for sub-toolbars. A sub-toolbar is,
-                 * by definition, contained inside another toolbar, so it
-                 * doesn't need the additional styling and behavior of a
-                 * L.Toolbar2.Control or L.Toolbar2.Popup.
-                 */
-                subToolbar: new L.Toolbar2({ 
-                    actions: [World, Eiffel, Cancel]
-                })
-            }
-        });
-        new L.Toolbar2.Control({
-            position: 'topleft',
-            actions: [MyCustomAction]
-        }).addTo(map);
-  
-  
+/* Set up EasyButton */
+L.easyButton('<img src="/path/to/img/of/penguin.png">', function(btn, map){
+    var antarctica = [-77,70];
+    map.setView(antarctica);
+}).addTo(map);
   </script>
 </body>
 </html>
