@@ -36,7 +36,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools III</div>
+  <div id="map-title">International Schools</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -88,8 +88,9 @@
 L.easyButton('fa-globe', function(btn, map){
     map.fitBounds(runLayer.getBounds());
 }).addTo(map);
-   Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
-  /*var customLayer = L.geoJson(null, {
+   
+  /*Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
+  var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
      layer.bindPopup(feature.properties.Title);
    }
