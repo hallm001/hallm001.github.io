@@ -85,7 +85,7 @@
     });
   
   /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
-  var customLayer = L.geoJson(null, {
+  /*var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
      layer.bindPopup(feature.properties.Title);
    }
@@ -94,7 +94,7 @@
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());
   }).addTo(map);
-  controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+  controlLayers.addOverlay(customLayer, 'Markers from data.csv'); */
 
   
   
