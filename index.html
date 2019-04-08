@@ -37,7 +37,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools III</div>
+  <div id="map-title">International Schools I</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -87,14 +87,7 @@ oms.addListener('click', function(marker) {
   map.closePopup();
 });
     
-    for (var i = 0; i < window.mapData.length; i ++) {
-  var datum = window.mapData[i];
-  var loc = new L.LatLng(datum.lat, datum.lon);
-  var marker = new L.Marker(loc);
-  marker.desc = datum.d;
-  map.addLayer(marker);
-  oms.addMarker(marker);  // <-- here
-}
+
     
   /* Display a blue point marker with pop-up text */
   //L.marker([41.77, -72.69]).addTo(map) // EDIT latitude, longitude to re-position marker
@@ -124,7 +117,16 @@ L.easyButton('<span class="target">&target;</span>', function(btn, map){
    map.fitBounds(runLayer.getBounds());
   }).addTo(map);
   controlLayers.addOverlay(customLayer, 'Markers from data.csv'); 
-
+    
+    
+    for (var i = 0; i < window.mapData.length; i ++) {
+  var datum = window.mapData[i];
+  var loc = new L.LatLng(datum.lat, datum.lon);
+  var marker = new L.Marker(loc);
+  marker.desc = datum.d;
+  map.addLayer(marker);
+  oms.addMarker(marker);  // <-- here
+}
   
   
   
