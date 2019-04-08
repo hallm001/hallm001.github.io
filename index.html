@@ -83,8 +83,12 @@
         //cM.y -= centerMarker.popup._container.clientHeight/2
         map.setView(map.unproject(cM),14, {animate: true});
     });
-  
-  /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
+    
+  /* Set up EasyButton */
+L.easyButton('fa-globe', function(btn, map){
+    map.fitBounds(runLayer.getBounds());
+}).addTo(map);
+   Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
   /*var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
      layer.bindPopup(feature.properties.Title);
@@ -94,7 +98,7 @@
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());
   }).addTo(map);
-  controlLayers.addOverlay(customLayer, 'Markers from data.csv'); */
+  controlLayers.addOverlay(customLayer, 'Markers from data.csv'); 
 
   
   
@@ -104,11 +108,9 @@
   
   
   
-/* Set up EasyButton */
-L.easyButton('<img src="/path/to/img/of/penguin.png">', function(btn, map){
-    var antarctica = [-77,70];
-    map.setView(antarctica);
-}).addTo(map);
+
+    
+    
   </script>
 </body>
 </html>
