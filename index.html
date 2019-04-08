@@ -37,7 +37,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools I</div>
+  <div id="map-title">International Schools II</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -116,6 +116,24 @@
          * parent action so we can disable it as soon as the sub-action
          * completes.
          */
+	  		new L.DrawToolbar.Control({ 
+			position: 'topleft',
+			className: 'leaflet-draw-toolbar',
+		}).addTo(map);
+
+		map.on('draw:created', function(evt) {
+			var	type = evt.layerType,
+				layer = evt.layer;
+
+			drawnItems.addLayer(layer);
+
+			layer.on('click', function(event) {
+				new L.EditToolbar.Popup(event.latlng, {
+					className: 'leaflet-draw-toolbar',
+					actions: editActions
+				}).addTo(map, layer);
+			});
+		});
         var ImmediateSubAction = L.Toolbar2.Action.extend({
             initialize: function(map, myAction) {
                 this.map = map;
