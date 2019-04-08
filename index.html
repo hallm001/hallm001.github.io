@@ -124,28 +124,13 @@ oms.addListener('click', function(marker) {
   var marker = new L.Marker(loc);
   marker.desc = datum.d;
   map.addLayer(marker);
-  oms.addMarker(marker);
-  var runLayer = omnivore.csv('data.csv', null, customLayer)
-  .on('ready', function() {
-   map.fitBounds(runLayer.getBounds());
-  }).addTo(map);
-  controlLayers.addOverlay(customLayer, 'Markers from data.csv');    
-      // <-- here
-}
-    
-    
-
-  
-  
-  
-  
-  
-  
-  
-  
-
-    
-    
+  oms.addMarker(marker);      // <-- here
+} 
   </script>
 </body>
+  <script>
+  // Populate markers
+  var data = omnivore.csv('data.csv', null, customLayer);
+  window.mapData = data;
+</script>
 </html>
