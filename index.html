@@ -96,7 +96,7 @@ L.easyButton('<span class="target">&target;</span>', function(btn, map){
   /*Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
-     layer.bindPopup(feature.properties.Text);
+     layer.bindPopup(feature.properties.Title);
    }
   });
   var runLayer = omnivore.csv('data.csv', null, customLayer)
