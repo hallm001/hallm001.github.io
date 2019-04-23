@@ -37,7 +37,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools I</div>
+  <div id="map-title">International Schools II</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -94,9 +94,9 @@ L.easyButton('<span class="target">&target;</span>', function(btn, map){
 }).addTo(map);
     
   /* Button - Europe */
-L.easyButton('<span class="globe">&target;</span>', function(btn, map){
-    map.setView([48.135042, 11.581849], 5);
-}).addTo(map);    
+L.easyButton('<span class="cross">&target;</span>', function(btn, map){
+    map.setView([48.135042, 11.581849], 4);
+}).addTo(map);
    
   /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
