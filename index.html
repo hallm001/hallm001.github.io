@@ -93,7 +93,7 @@ L.easyButton('<span class="target">&target;</span>', function(btn, map){
     map.fitBounds(runLayer.getBounds());
 }).addTo(map);
    
-  /*Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
+  /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
      layer.bindPopup(feature.properties.Text);
