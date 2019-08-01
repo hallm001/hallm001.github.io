@@ -110,7 +110,7 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
   var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer, latlng) {
      layer.bindPopup(feature.properties.Text);
-     return L.marker(latlng, {icon: orangeIcon}
+     return L.marker(latlng, {icon: orangeIcon});
    }
   });
   var runLayer = omnivore.csv('data.csv', null, customLayer)
