@@ -37,7 +37,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools V</div>
+  <div id="map-title">International Schools VI</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -120,7 +120,7 @@ var runLayer = omnivore.csv('data.csv', null, customLayer)
    omnivoreLayer.eachLayer(function(layer) {
 
 	if (layer instanceof L.Marker) {
-		layer.setIcon(redIcon);
+		layer.setIcon(orangeIcon);
 	}
    });
   }).addTo(map);
