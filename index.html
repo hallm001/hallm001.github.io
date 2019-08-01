@@ -49,10 +49,11 @@
     zoom: 3,  // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
     scrollWheelZoom: true
   });
+    
 
   var orangeIcon = new L.Icon({
-    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconUrl: 'bin/marker-icon-orange.png',
+    shadowUrl: 'bin/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -108,7 +109,7 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
    
   /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
-   onEachFeature: function(feature, layer) {
+   onEachFeature: function(feature, layer, latlang) {
      layer.bindPopup(feature.properties.Text)
      return L.marker(latlng, {icon: orangeIcon});
    }
