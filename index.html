@@ -37,7 +37,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools IV</div>
+  <div id="map-title">International Schools V</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -109,14 +109,20 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
    
   /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
-   onEachFeature: function(feature, layer, latlang) {
-     layer.bindPopup(feature.properties.Text)
-     return L.marker(latlng, {icon: orangeIcon});
+   onEachFeature: function(feature, layer) {
+     layer.bindPopup(feature.properties.Text);
    }
   });
-  var runLayer = omnivore.csv('data.csv', null, customLayer)
+    
+var runLayer = omnivore.csv('data.csv', null, customLayer)
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());
+   omnivoreLayer.eachLayer(function(layer) {
+
+	if (layer instanceof L.Marker) {
+		layer.setIcon(redIcon);
+	}
+   });
   }).addTo(map);
   controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
