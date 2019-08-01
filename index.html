@@ -6,7 +6,7 @@
   <meta charset="utf-8">
 
   <!-- Load Leaflet: instructions at http://leafletjs.com/download.html -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+  <link rel="stylesheet" href="leaflet/leaflet.css"
   integrity="sha384-Zh+y1U8o6/7ni8Mp8szvUfZjGeKKS10CGH3IlD6L1X+XwzYgQ1llOjw/Wslc0cma"
   crossorigin="anonymous">
  
@@ -37,7 +37,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">International Schools I</div>
+  <div id="map-title">International Schools II</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -114,15 +114,9 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
    }
   });
     
-var runLayer = omnivore.csv('data.csv', null, customLayer)
+  var runLayer = omnivore.csv('data.csv', null, customLayer)
   .on('ready', function() {
-   map.fitBounds(runLayer.getBounds());  
-   omnivoreLayer.eachLayer(function(layer) {
-
-	if (layer instanceof L.Marker) {
-		layer.setIcon(orangeIcon);
-	}
-   });
+   map.fitBounds(runLayer.getBounds());
   }).addTo(map);
   controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
